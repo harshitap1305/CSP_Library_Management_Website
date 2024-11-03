@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Student Registration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="home.css">
+  
+</head>
+<body>
+    <div class="header">
+        <img src="home_images/IIT_Bhilai_logo.png" alt="IIT Bhilai"  width="135px">
+        <p>Central Library<br>
+        Indian Institute of Technology, Bhilai</p>
+     
+    </div>
+
+    <div class="navbar">
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="user_login.html">User Login</a></li>
+        <li><a href="admin_login.html">Admin Login</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+        <li><a href="contact_us.html">Contact Us</a></li>
+        <li><a href="vision_mission.html">Our Vision and Mission</a></li>
+        <li><a href="rules.html">Library Rules</a></li>
+        <li><a href="student_registration.html"></a></li>
+    </ul>  
+</div>
+  
+<section>
+  <div>
+
+    <div>
+        <h1 style="text-align: center; font-size: 35px;font-family: Lucida Console;">Library Management System</h1><br>
+        <h1 style="text-align: center; font-size: 25px;">User Registration Form</h1><br>
+      <form name="Registration" action="student_registration.php" method="post">
+        <br><br>
+        <div class="login">
+          <input type="text" name="first" placeholder="First Name" required=""> <br><br>
+          <input type="text" name="last" placeholder="Last Name" required=""> <br><br>
+          <input type="text" name="username" placeholder="Username" required=""> <br><br>
+          <input type="password" name="password" placeholder="Password" required=""> <br><br>
+          <input type="text" name="roll" placeholder="Roll No." required=""><br><br>
+
+          <input type="text" name="email" placeholder="Email" required=""><br><br>
+
+          <button>Sign Up</button></div>
+      </form>
+     
+    </div>
+  </div>
+</section>
+</body>
