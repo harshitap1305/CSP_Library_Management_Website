@@ -1,14 +1,11 @@
 <?php
-// config.php
-$host = 'localhost';
-$dbname = 'library';
-$username = 'root';
-$password = '130505';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
-}
+$sDbHost = 'localhost';
+$sDbName = 'library';
+$sDbUser = 'root';
+$sDbPwd = '130505';
+
+$dbConn = mysqli_connect ($sDbHost, $sDbUser, $sDbPwd) or die('Connection Failed');
+mysqli_select_db($dbConn,$sDbName);
 ?>
+

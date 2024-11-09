@@ -3,31 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Books</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Library Book Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #3984DB;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        label {
+            margin-right: 10px;
+            color: #333;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #3984DB;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #3984DB;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <h1>Available Books</h1>
-    <div id="book-list"></div>
 
-    <script>
-        fetch('get_books.php')
-            .then(response => response.json())
-            .then(data => {
-                const bookList = document.getElementById('book-list');
-                data.forEach(book => {
-                    const bookItem = document.createElement('div');
-                    bookItem.className = 'book-item';
-                    bookItem.innerHTML = `
-                        <h2>${book.title}</h2>
-                        <p><strong>Author:</strong> ${book.author}</p>
-                        <p><strong>Genre:</strong> ${book.genre}</p>
-                        <p><strong>Status:</strong> ${book.availability ? 'Available' : 'Checked Out'}</p>
-                        <p>${book.description}</p>
-                    `;
-                    bookList.appendChild(bookItem);
-                });
-            });
-    </script>
+<div class="container">
+    <h1>Library Book Search</h1>
+    
+    <!-- Search Form -->
+    <form action="get_books.php" method="POST">
+        <label for="searchBook">Search Book:</label>
+        <input type="text" name="searchBook" id="searchBook" placeholder="Enter search keyword" required>
+        
+        <!-- Search Criteria -->
+        <label for="searchRadio">Search By:</label>
+        <input type="radio" name="searchRadio" value="bookName" id="searchRadio" checked> Book Name
+        <input type="radio" name="searchRadio" value="Author"> Author
+        <input type="radio" name="searchRadio" value="BookCategory"> Category
+        <input type="radio" name="searchRadio" value="BookNo"> Book No.
+        <input type="submit" value="Search">
+    </form>
+</div>
+
 </body>
 </html>
