@@ -62,6 +62,25 @@ body{
     background-color: #F8F0E3;
     border-radius: 5px;
 }
+<<<<<<< HEAD
 
 
 
+=======
+.intro {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #AD6A48;
+
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(249, 248, 248);
+}
+
+.intro p {
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+}
+>>>>>>> 51d4d1ae82e961dbf6130921d12c2d049d005f23
