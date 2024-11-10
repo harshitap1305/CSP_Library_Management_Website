@@ -17,6 +17,10 @@ if(isset($_POST['searchBook']) && !empty($_POST['searchBook'])){
 			$query = mysqli_query($dbConn,"select * from booklist where id = '$search_query'") or die(mysqli_error($dbConn));
 	}
 }
+else {
+    // If no search term, retrieve all books
+    $query = mysqli_query($dbConn, "SELECT * FROM booklist") or die(mysqli_error($dbConn));
+}
 /*
 else if(isset($_POST['searchAuthor']) && !empty($_POST['searchAuthor'])){
     
@@ -48,6 +52,7 @@ echo "<tr>
 <th><font color='#3984DB'>BOOK NAME</font></th>
 <th><font color='#3984DB'>AUTHOR</font></th>
 <th><font color='#3984DB'>GENRE</font></th>
+<th><font color='#3984DB'>SHELF No.</font></th>
 <th><font color='#3984DB'>AVALABILITY</font></th>
 <th><font color='#3984DB'>QUANTITY</font></th>
 <th><font color='#3984DB'>YEAR OF PUBLICATION</font></th>
@@ -57,7 +62,7 @@ echo "<tr>
 while($row = mysqli_fetch_array( $query ))
 {
 	
-	$qty = $row['rqty'];
+	/*$qty = $row['rqty'];*/
 
 echo "<tr>";
 echo '<td>' . $row['id'] . '</td>';
