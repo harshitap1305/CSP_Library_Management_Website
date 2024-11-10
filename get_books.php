@@ -51,7 +51,7 @@ echo "<tr>
 <th><font color='#3984DB'>BOOK ID</font></th>
 <th><font color='#3984DB'>BOOK NAME</font></th>
 <th><font color='#3984DB'>AUTHOR</font></th>
-<th><font color='#3984DB'>GENRE</font></th>
+<th><font color='#3984DB'>CATEGORY</font></th>
 <th><font color='#3984DB'>SHELF No.</font></th>
 <th><font color='#3984DB'>AVALABILITY</font></th>
 <th><font color='#3984DB'>QUANTITY</font></th>

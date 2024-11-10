@@ -1,33 +1,35 @@
 <?php
-$servername = "localhost";
-$username = "root"; 
-$password = "130505";
-$dbname = "library";
 
-// Create a connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+include('config.php');
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first=$_POST['first'];
-    $last=$_POST['last'];
-    $user = $_POST['username'];
-    $roll=$_POST['roll'];
+    $id = $_POST['id'];
+    $name=$_POST['name'];
     $email = $_POST['email'];
     $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $department=$_POST['department'];
+    $degree = $_POST['degree'];
+    $mobile = $_POST['mobile'];
     
-    $sql = "INSERT INTO users (first,last,username,roll, email, password) VALUES ('$first','$last','$user','$roll','$email', '$pass')";
+    $checkQuery = "SELECT * FROM user_info WHERE user_email = '$email'";
+    $result = $dbConn->query($checkQuery);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Registration successful!";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    if ($result->num_rows > 0) {
+        // Email already exists
+        echo "User with this email already exists!";
     }
-    $conn->close();
+    else{
+    
+    $sql = "INSERT INTO user_info (user_id, user_name, user_email, userPassword, user_department, user_degree, user_mobile) VALUES
+     ('$id','$name','$email','$pass','$department', '$degree' , '$mobile')";
+
+    if ($dbConn->query($sql) === TRUE) {
+        echo "Registration successful! You can now Login to your Account";
+    } else {
+        echo "Error: " . $sql . "<br>" . $dbConn->error;
+    }
 }
+    $dbConn->close();
+}
+
 ?>
