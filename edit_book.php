@@ -12,6 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare($query);
     $stmt->execute([$title, $author, $genre, $availability, $book_id]);
 
-    echo "Book updated successfully!";
+    echo "Book edited successfully!";
 }
 ?>
