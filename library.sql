@@ -37,7 +37,8 @@ user_email varchar(100) primary key,
 userPassword varchar(255) not  null,
 user_department varchar(50) not null,
 user_degree varchar(50) not null,
-user_mobile varchar(10) not null
+user_mobile varchar(10) not null,
+issued_book varchar(255) default 0
 );
 
 INSERT INTO user_info (user_id, user_name, user_email, userPassword, user_department, user_degree, user_mobile)
@@ -65,10 +66,28 @@ VALUES
     
     
     create table admin_info(
-    admin_id int unique,
+    admin_id varchar(255) unique,
     admin_name varchar(100) not null,
     admin_email varchar(100) primary key,
-	adminPassword varchar(255) not  null,
-    
+	adminPassword varchar(255) not  null
     );
+
+    
+  INSERT INTO admin_info (admin_id, admin_name, admin_email, adminPassword)
+ VALUES
+    ('AD01', 'John Doe', 'john.doe@iitbhilai.ac.in', 'password123'),
+    ('AD02', 'Jane Smith', 'jane.smith@iitbhilai.ac.in', 'securePass!'),
+    ('AD03', 'Alice Brown', 'alice.brown@iitbhilai.ac.in', 'alice@123'),
+    ('AD04', 'Bob White', 'bob.white@iitbhilai.ac.in', 'bobPass789');
+    
+    CREATE TABLE requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    book_id INT NOT NULL,
+    user_id INT NOT NULL,
+    request_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+    FOREIGN KEY (book_id) REFERENCES booklist(id),
+    FOREIGN KEY (user_id) REFERENCES user_info(user_id)
+);
+
 
