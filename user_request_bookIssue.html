@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Issue Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+           
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #AD6A48;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        label {
+            margin-right: 10px;
+            color: #333;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color:#AD6A48;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #AD6A48;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+     <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="header">
+        <img src="home_images/IIT_Bhilai_logo.png" alt="IIT Bhilai"  width="135px">
+        <p>Central Library<br>
+        Indian Institute of Technology, Bhilai</p>
+     
+    </div>
+
+    <div class="navbar">
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="user_login.html">User Login</a></li>
+        <li><a href="admin_login.html">Admin Login</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+        <li><a href="contact_us.html">Contact Us</a></li>
+        <li><a href="vision_mission.html">Our Vision and Mission</a></li>
+        <li><a href="rules.html">Library Rules</a></li>
+        <li><a href="student_registration.html">Student Registration</a></li>
+        <li><a href="books.html">Book List</a></li>
+    </ul>  
+</div>
+<div class="container">
+    <h1>Library Book Issue Request</h1>
+    <br><br>
+    <form action="user_request_bookIssue.php" method="POST">
+        <label for="searchBook">Search Book:</label>
+        <input type="text" name="searchBook" id="searchBook" placeholder="Enter search keyword">
+        
+        <label for="searchRadio">Search By:</label>
+        <input type="radio" name="searchRadio" value="bookName" id="searchRadio" checked> Book Name
+        <input type="radio" name="searchRadio" value="Author"> Author
+        <input type="radio" name="searchRadio" value="BookCategory"> Category
+        <input type="radio" name="searchRadio" value="BookNo"> Book No.
+        <input type="submit" value="Search">
+    </form>
+</div>
+
+</body>
+</html>

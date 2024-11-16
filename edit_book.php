@@ -13,5 +13,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute([$title, $author, $genre, $availability, $book_id]);
 
     echo "Book edited successfully!";
-}
+ }
 ?>
