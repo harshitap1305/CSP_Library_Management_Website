@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result->num_rows > 0) {
         $_SESSION['user'] = $email;
-        header("Location: user_dashboard.html");
+        header("Location: user_dashboard.php");
     } else {
         echo "<p>Invalid credentials</p>";
     }
