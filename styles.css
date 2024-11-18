@@ -64,19 +64,19 @@ body{
 }
 
 .intro {
-    max-width: 600px;
+    max-width: 80%;
     margin: 50px auto;
     padding: 20px;
     background-color: #AD6A48;
 
-    text-align: center;
+    text-align: justify;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgb(249, 248, 248);
 }
 
 .intro p {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: white;
 }
 
@@ -195,26 +195,17 @@ body{
         background-color: #FF4B5C;     
         color: white;                  
         text-decoration: none;         
-        border-radius: 5px;          
+        border-radius: 5px;       
 }
 
 .logout a:hover{
-    
         background-color: #D83941;    
-    
 }
 
-/* body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f4f4f9;
-}
 
-h1 {
-    color: #333;
-}
 
-#book-list {
+
+/* #book-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -231,28 +222,6 @@ h1 {
 .book-item h2 {
     color: #333;
     margin-top: 0;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    margin-top: 20px;
-}
-
-form input, form textarea {
-    margin-bottom: 10px;
-    padding: 8px;
-}
-
-form button {
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #555;
 } */
+
+
