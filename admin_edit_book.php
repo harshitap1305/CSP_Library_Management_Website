@@ -6,13 +6,19 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 include 'config.php';
+include 'navbar.php';
 
-$admin_email = $_SESSION['admin_logged_in'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    $sBookTitle = $_POST['book_title'];
+    $sAuthor = $_POST['author'];
+    $sIsbn = $_POST['isbn'];
+    $sPublisher = $_POST['publisher'];
 
-// Check database connection
-if (!$dbConn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+   
+    if (!$dbConn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
 // Fetch books for the dropdown
 $query = "SELECT id, book_title FROM books";

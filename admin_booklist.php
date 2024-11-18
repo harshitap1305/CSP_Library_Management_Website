@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 require 'config.php';
-
+include 'navbar.php';
 
 $sSql = "SELECT * FROM books";
 
