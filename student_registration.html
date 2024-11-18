@@ -6,7 +6,78 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="home.css">
-  
+  <style>
+    section {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px; 
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px; 
+    font-family: 'Arial', sans-serif;
+}
+
+section h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="number"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border 0.2s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form input[type="email"]:focus,
+form input[type="number"]:focus {
+    border: 2px solid #305B65;
+    outline: none;
+}
+
+form button {
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #305B65;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #24757d;
+}
+
+.form-container {
+    text-align: center;
+}
+
+
+  </style>
 </head>
 <body>
     <div class="header">
@@ -34,7 +105,7 @@
   <div>
 
     <div>
-        <h1 style="text-align: center;">Library Management System</h1><br>
+
         <h1 style="text-align: center;">User Registration Form</h1><br>
       <form name="Registration" action="student_registration.php" method="post">
         <br><br>
@@ -52,7 +123,5 @@
     </div>
   </div>
 </section>
-<div class="footer">
-  <p>© 2024 Central Library, IIT Bhilai. All rights reserved.</p>
-</div>
+
 </body>

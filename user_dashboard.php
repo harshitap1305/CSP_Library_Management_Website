@@ -83,7 +83,7 @@ $penalty = $result_penalty->fetch_assoc()['penalty'] ?? 0;
 
         <div>
             <button onclick="window.location.href='borrow_history.php'">View Borrow History</button>
-            <button onclick="window.location.href='issue_book.php'">Issue a Book</button>
+            <button onclick="window.location.href='user_request_bookIssue.html'">Issue a Book</button>
         </div> 
 
         <div>
