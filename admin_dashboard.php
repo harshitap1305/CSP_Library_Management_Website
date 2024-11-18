@@ -19,15 +19,15 @@ if(!isset($_SESSION['user_id'])) {
 <body>
 
     <div class="navbar">
-        <a href="dashboard.php">Home</a>
-        <a href="add_book.php">Add Books</a>
-        <a href="edit_books.php">Edit Books</a>
-        <a href="delete_books.php">Delete Books</a>
-        <a href="view_requests.php">View Issue Requests</a>
-        <a href="book_list.php">Book List</a>
-        <a href="student_data.php">View Student Data</a>
-        <a href="issued_books.php">Currently Issued Books</a>
-        <a href="logout.php">Logout</a>
+        <a href="home.html">Home</a>
+        <a href="admin_add_book.php">Add Books</a>
+        <a href="admin_edit_book.php">Edit Books</a>
+        <a href="admin_delete_book.php">Delete Books</a>
+        <a href="admin_view_requests.php">View Issue Requests</a>
+        <a href="admin_booklist.php">Book List</a>
+        <a href="admin_view_student.php">View Student Data</a>
+        <a href="admin_currently_issued.php">Currently Issued Books</a>
+        <a href="admin_logout.php">Logout</a>
     </div>
 
     <h1>Welcome to the Library Dashboard</h1>
