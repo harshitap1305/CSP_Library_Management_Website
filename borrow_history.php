@@ -98,8 +98,8 @@ td:last-child {
         <tbody>
             <?php while ($row = $result_history->fetch_assoc()): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($row['title']); ?></td>
-                    <td><?php echo htmlspecialchars($row['issued_date']); ?></td>
+                    <td><?php echo htmlspecialchars($row['bookName']); ?></td>
+                    <td><?php echo htmlspecialchars($row['issue_date']); ?></td>
                     <td><?php echo $row['return_date'] ? htmlspecialchars($row['return_date']) : "Not returned yet"; ?></td>
                 </tr>
             <?php endwhile; ?>

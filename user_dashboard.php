@@ -65,7 +65,7 @@ $penalty = $result_penalty->fetch_assoc()['penalty'] ?? 0;
             <?php if ($result_books->num_rows > 0): ?>
                 <ul>
                     <?php while ($book = $result_books->fetch_assoc()): ?>
-                        <li><?php echo htmlspecialchars($book['bookName']); ?></li>
+                        <li><?php echo htmlspecialchars($book['title']); ?></li>
                     <?php endwhile; ?>
                 </ul>
             <?php else: ?>
