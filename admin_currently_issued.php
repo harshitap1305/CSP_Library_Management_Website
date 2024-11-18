@@ -8,24 +8,31 @@ if (!isset($_SESSION['admin_logged_in'])) {
 require 'config.php';
 include 'navbar.php';
 
-$sSql = "SELECT issued_books.book_id, books.title, issued_books.student_id, students.name 
+// Enable error reporting
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$sSql = "SELECT issued_books.book_id, books.book_title, issued_books.student_id, students.name 
          FROM issued_books
          INNER JOIN books ON issued_books.book_id = books.id
          INNER JOIN students ON issued_books.student_id = students.id";
 
-
 $rResult = $dbConn->query($sSql);
 
+if (!$rResult) {
+    die("Query Failed: " . $dbConn->error);
+}
 
+// Fetch all results into an array for reuse
+$issuedBooks = [];
 if ($rResult->num_rows > 0) {
-    
     while ($rRow = $rResult->fetch_assoc()) {
-        echo "Book ID: " . $rRow['book_id'] . " | Title: " . $rRow['title'] . " | Student ID: " . $rRow['student_id'] . " | Student Name: " . $rRow['name'] . "<br>";
+        $issuedBooks[] = $rRow; // Store each row in an array
     }
 } else {
     echo "No records found.";
 }
-
 
 $dbConn->close();
 ?>
@@ -42,10 +49,16 @@ $dbConn->close();
             <th>Book Title</th>
             <th>Student Name</th>
         </tr>
-        <?php while ($row = $result->fetch_assoc()) { ?>
+        <?php if (!empty($issuedBooks)) { ?>
+            <?php foreach ($issuedBooks as $row) { ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($row['book_title']); ?></td>
+                    <td><?php echo htmlspecialchars($row['name']); ?></td>
+                </tr>
+            <?php } ?>
+        <?php } else { ?>
             <tr>
-                <td><?php echo $row['title']; ?></td>
-                <td><?php echo $row['name']; ?></td>
+                <td colspan="2">No records found.</td>
             </tr>
         <?php } ?>
     </table>
