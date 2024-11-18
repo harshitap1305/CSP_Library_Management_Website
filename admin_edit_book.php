@@ -14,7 +14,7 @@ if (!$dbConn) {
 }
 
 // Fetch books for the dropdown
-$query = "SELECT id, book_title FROM books";
+$query = "SELECT id, bookName FROM booklist";  // 'bookName' instead of 'book_title'
 $result = $dbConn->query($query);
 if (!$result) {
     die("Error fetching books: " . $dbConn->error);
@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_id'])) {
     if (empty($book_id) || empty($title) || empty($author) || empty($quantity)) {
         echo "All fields are required.";
     } else {
-        // Update the book details
-        $updateQuery = "UPDATE books SET book_title = ?, author = ?, quantity = ? WHERE id = ?";
+        // Update the book details (Update 'bookName', 'authorName', 'quantity' instead of 'book_title', 'author', 'quantity')
+        $updateQuery = "UPDATE booklist SET bookName = ?, authorName = ?, quantity = ? WHERE id = ?";  // 'bookName' and 'authorName' instead of 'book_title' and 'author'
         $stmt = $dbConn->prepare($updateQuery);
         if ($stmt) {
             $stmt->bind_param('ssii', $title, $author, $quantity, $book_id);
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_id'])) {
             <option value="">Select a book</option>
             <?php while ($row = $result->fetch_assoc()) { ?>
                 <option value="<?php echo htmlspecialchars($row['id']); ?>">
-                    <?php echo htmlspecialchars($row['book_title']); ?>
+                    <?php echo htmlspecialchars($row['bookName']); ?> <!-- 'bookName' instead of 'book_title' -->
                 </option>
             <?php } ?>
         </select><br>
