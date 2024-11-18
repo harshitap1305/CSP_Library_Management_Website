@@ -86,7 +86,64 @@ if (!$result) {
 <html>
 <head>
     <title>View Issue Requests</title>
-    
+    <style>
+        body {
+            font-family: "Merriweather", Arial, sans-serif;
+            background-color: #F8F0E3;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #305B65;
+            font-family: "Playfair Display", Georgia, serif;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #AD6A48;
+            color: white;
+            font-weight: bold;
+        }
+        td {
+            font-size: 14px;
+            color: #333;
+        }
+        tr:nth-child(even) {
+            background-color: #F8F0E3;
+        }
+        tr:hover {
+            background-color: #EFE2D4;
+        }
+        p {
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            table {
+                width: 100%;
+            }
+            th, td {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Issue Requests</h1>

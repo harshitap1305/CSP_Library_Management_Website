@@ -30,7 +30,6 @@ if (!$rResult) {
             padding: 0;
         }
         h1 {
-            text-align: center;
             margin-top: 20px;
             color: #305B65;
             font-family: "Playfair Display", Georgia, serif;
