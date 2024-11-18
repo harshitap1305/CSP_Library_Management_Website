@@ -54,6 +54,73 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Books</title>
+    <style>
+        body {
+            font-family: "Merriweather", Arial, sans-serif;
+            background-color: #F8F0E3;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #305B65;
+            font-family: "Playfair Display", Georgia, serif;
+        }
+        form {
+            max-width: 500px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        select, input, button {
+            display: block;
+            width: calc(100% - 20px);
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-family: "Merriweather", Arial, sans-serif;
+        }
+        select {
+            background-color: #fff;
+        }
+        input:focus, select:focus {
+            border-color: #AD6A48;
+            outline: none;
+        }
+        button {
+            background-color: #AD6A48;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #915638;
+            transform: translateY(-3px);
+        }
+        button:active {
+            background-color: #78472e;
+            transform: translateY(0);
+        }
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            select, input, button {
+                width: calc(100% - 30px);
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Edit Books</h1>

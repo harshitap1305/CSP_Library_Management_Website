@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: "Merriweather", Arial, sans-serif;
+            background-color: #F8F0E3;
             margin: 0;
             padding: 0;
         }
@@ -20,39 +20,67 @@
             background: #fff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .dashboard-title {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 20px;
-            color: #333;
+            color: #305B65;
+            font-family: "Playfair Display", Georgia, serif;
         }
         .dashboard-buttons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
         }
         .dashboard-button {
-            background-color: #007bff;
+            background-color: #AD6A48;
             color: #fff;
             border: none;
-            padding: 15px 30px;
+            padding: 15px 25px;
             font-size: 16px;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
             text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-family: "Merriweather", Arial, sans-serif;
         }
         .dashboard-button:hover {
-            background-color: #0056b3;
+            background-color: #915638;
+            transform: translateY(-3px);
+        }
+        .dashboard-button:active {
+            background-color: #78472e;
+            transform: translateY(0);
         }
     </style>
-    
 </head>
 <body>
+    <div class="header">
+        <img src="home_images/IIT_Bhilai_logo.png" alt="IIT Bhilai"  width="135px">
+        <p>Central Library<br>
+        Indian Institute of Technology, Bhilai</p>
+     
+    </div>
+
+    <div class="navbar">
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="user_login.html">User Login</a></li>
+        <li><a href="admin_login.html">Admin Login</a></li>
+        <li><a href="about_us.html">About Us</a></li>
+        <li><a href="contact_us.html">Contact Us</a></li>
+        <li><a href="vision_mission.html">Our Vision and Mission</a></li>
+        <li><a href="rules.html">Library Rules</a></li>
+        <li><a href="student_registration.html">Student Registration</a></li>
+        <li><a href="books.html">Book List</a></li>
+    </ul>  
+</div>
+
     <div class="dashboard-container">
-        <h1 class="dashboard-title">Admin Dashboard</h1>
+        
+        <h1 class="dashboard-title">Welcome, Admin!</h1>
         <div class="dashboard-buttons">
             <a href="admin_edit_book.php" class="dashboard-button">Edit Books</a>
             <a href="admin_view_requests.php" class="dashboard-button">View Issue Requests</a>
@@ -64,17 +92,3 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
