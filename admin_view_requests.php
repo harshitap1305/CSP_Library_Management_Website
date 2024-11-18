@@ -13,7 +13,7 @@ if (!$dbConn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM issue_requests";
+$sql = "SELECT * FROM requests";
 $result = $dbConn->query($sql);
 
 if (!$result) {
@@ -40,7 +40,7 @@ if (!$result) {
                 <tr>
                     <td><?php echo htmlspecialchars($row['id']); ?></td>
                     <td><?php echo htmlspecialchars($row['book_id']); ?></td>
-                    <td><?php echo htmlspecialchars($row['student_id']); ?></td>
+                    <td><?php echo htmlspecialchars($row['user_id']); ?></td>
                     <td><?php echo htmlspecialchars($row['status']); ?></td>
                 </tr>
             <?php } ?>

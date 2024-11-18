@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $dbConn->query($sql);
 
     if ($result->num_rows > 0) {
-        $_SESSION['user'] = $email;
+        $_SESSION['admin_logged_in'] = $email;
         header("Location: admin_dashboard.html");
     } else {
         echo "<p>Invalid credentials</p>";
