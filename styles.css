@@ -62,6 +62,7 @@ body{
     background-color: #F8F0E3;
     border-radius: 5px;
 }
+
 .intro {
     max-width: 600px;
     margin: 50px auto;
@@ -77,6 +78,130 @@ body{
     margin: 0;
     font-size: 1rem;
     color: white;
+}
+
+.buttons{
+    margin: 30px;
+    gap: 10px;
+    display: flex;             
+    justify-content: center;
+}
+
+.buttons a{ 
+    color: white;
+    background-color: #305B65;
+    font-family: Merriweather;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.buttons a:hover{
+    background-color:#AD6A48;
+    color: #F8F0E3;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Dashboard Title */
+.dashboard-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #305B65;
+    margin-bottom: 30px;
+}
+
+/* User Info Section */
+.user-info {
+    justify-content: space-between;
+    margin-bottom: 30px;
+    text-align: center; 
+}
+
+.user-info h1 {
+    color: #305B65;
+    margin-bottom: 15px;
+}
+
+.user-info p {
+    color:#AD6A48;
+    font-size: 16px;
+}
+
+/* Current Books Issued Section */
+.books-issued {
+    background-color: #305B65;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.books-issued h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.books-issued ul {
+    list-style: none;
+    padding: 0;
+}
+
+.books-issued ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.books-issued ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* Penalty Section */
+.penalty-section {
+    background-color: #F8F0E3;
+    color: #AD6A48;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+.penalty-section h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.penalty-section p {
+    font-size: 18px;
+}
+
+.logout a{
+        display: inline-block;         
+        padding: 10px 20px;           
+        font-size: 16px;               
+        background-color: #FF4B5C;     
+        color: white;                  
+        text-decoration: none;         
+        border-radius: 5px;          
+}
+
+.logout a:hover{
+    
+        background-color: #D83941;    
+    
 }
 
 /* body {
