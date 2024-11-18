@@ -18,21 +18,27 @@ $result_user = $stmt_user->get_result();
 $user = $result_user->fetch_assoc();
 
 // Fetch current books issued
-// $query_books = "SELECT books.title FROM issues 
-//                 JOIN books ON issues.book_id = books.id 
-//                 WHERE issues.user_id = ? AND issues.returned = 0";
-// $stmt_books = $conn->prepare($query_books);
-// $stmt_books->bind_param("s", $user_email);
-// $stmt_books->execute();
-// $result_books = $stmt_books->get_result();
+$query_books = "SELECT booklist.bookName AS title 
+                FROM issues 
+                JOIN booklist ON issues.book_id = booklist.id 
+                JOIN user_info ON issues.user_id = user_info.user_id 
+                WHERE user_info.user_email = ? AND issues.returned = 0";
+$stmt_books = $dbConn->prepare($query_books);
+$stmt_books->bind_param("s", $user_email); 
+$stmt_books->execute();
+$result_books = $stmt_books->get_result();
+
 
 // Check for penalties
-// $query_penalty = "SELECT SUM(amount) AS penalty FROM penalties WHERE user_id = ?";
-// $stmt_penalty = $conn->prepare($query_penalty);
-// $stmt_penalty->bind_param("s", $user_email);
-// $stmt_penalty->execute();
-// $result_penalty = $stmt_penalty->get_result();
-// $penalty = $result_penalty->fetch_assoc()['penalty'] ?? 0;
+$query_penalty = "SELECT SUM(penalty_amount) AS penalty 
+                  FROM penalties 
+                  JOIN user_info ON penalties.user_id = user_info.user_id 
+                  WHERE user_info.user_email = ?";
+$stmt_penalty = $dbConn->prepare($query_penalty);
+$stmt_penalty->bind_param("s", $user_email);
+$stmt_penalty->execute();
+$result_penalty = $stmt_penalty->get_result();
+$penalty = $result_penalty->fetch_assoc()['penalty'] ?? 0;
 
 ?>
 
@@ -59,26 +65,26 @@ $user = $result_user->fetch_assoc();
             <p>Program: <?php echo htmlspecialchars($user['user_degree']); ?></p>
         </div>
 
-        <!-- <h2>Current Books Issued:</h2>
+         <h2>Current Books Issued:</h2>
        <div class="books-list">
             <?php if ($result_books->num_rows > 0): ?>
                 <ul>
                     <?php while ($book = $result_books->fetch_assoc()): ?>
-                        <li><?php echo htmlspecialchars($book['title']); ?></li>
+                        <li><?php echo htmlspecialchars($book['bookName']); ?></li>
                     <?php endwhile; ?>
                 </ul>
             <?php else: ?>
                 <p>No books issued currently.</p>
             <?php endif; ?>
-        </div>  -->
+        </div> 
 
-        <!-- <h2>Penalty:</h2>
+         <h2>Penalty:</h2>
         <p><?php echo $penalty > 0 ? "₹" . number_format($penalty, 2) : "No penalty."; ?></p>
 
         <div>
             <button onclick="window.location.href='borrow_history.php'">View Borrow History</button>
             <button onclick="window.location.href='issue_book.php'">Issue a Book</button>
-        </div> -->
+        </div> 
 
         <div>
             <button class="logout" onclick="window.location.href='logout.php'">Logout</button>

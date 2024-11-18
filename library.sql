@@ -90,4 +90,29 @@ VALUES
     FOREIGN KEY (user_id) REFERENCES user_info(user_id)
 );
 
+CREATE TABLE issues (
+    issue_id INT AUTO_INCREMENT PRIMARY KEY,
+    book_id INT NOT NULL,
+    user_id INT NOT NULL,
+    issue_date DATE NOT NULL,
+    due_date DATE NOT NULL,
+    return_date DATE DEFAULT NULL,
+    returned BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (book_id) REFERENCES booklist(id),
+    FOREIGN KEY (user_id) REFERENCES user_info(user_id)
+);
+
+CREATE TABLE penalties (
+    penalty_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    book_id INT NOT NULL,
+    penalty_amount DECIMAL(10, 2) NOT NULL,
+    reason VARCHAR(255) NOT NULL,
+    penalty_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('Paid', 'Unpaid') DEFAULT 'Unpaid',
+    FOREIGN KEY (user_id) REFERENCES user_info(user_id),
+    FOREIGN KEY (book_id) REFERENCES booklist(id)
+);
+
+
 
