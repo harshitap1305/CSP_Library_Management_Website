@@ -1,4 +1,7 @@
 # CSP_Library_Management_Website
+# Git repository link
+ https://github.com/harshitap1305/CSP_Library_Management_Website
+ 
 # Central Library, IIT Bhilai Webpage
 
 Under this project , we developed a dynamic website for Library Management containing various features. It includes various sections to provide users with relevant information and access to library services.This project includes a database schema with tables to store information about books, users, admins, book requests, book issues, and penalties.
