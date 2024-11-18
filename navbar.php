@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Central Library, IIT Bhilai</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,22 +25,6 @@
         <li><a href="student_registration.html">Student Registration</a></li>
         <li><a href="books.html">Book List</a></li>
     </ul>  
-</div>
-  
-<div class="intro">
-    
-    
-    <p>Welcome to the IIT Bhilai Library, your essential resource for academic excellence 
-        and research innovation. Our library offers a vast collection of books, journals, 
-        and digital resources across various disciplines, providing students and faculty 
-        with the tools they need to succeed. With modern study spaces, expert research 
-        assistance, and engaging workshops, we are dedicated to fostering a vibrant 
-        learning environment. Whether you're seeking to deepen your knowledge, collaborate
-         on projects, or explore new ideas, the IIT Bhilai Library is here to support your
-          academic journey. Join us in discovering the wealth of information that awaits you!
-
-
-    </p>
 </div>
 
 </body>

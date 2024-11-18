@@ -48,18 +48,20 @@ $penalty = $result_penalty->fetch_assoc()['penalty'] ?? 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
         .dashboard { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
-        .header { text-align: center; margin-bottom: 20px; }
+        .user_header { text-align: center; margin-bottom: 20px; }
         .books-list { margin: 10px 0; }
         button { margin: 5px; }
         .logout { background-color: #f44336; color: white; border: none; padding: 10px 15px; cursor: pointer; }
     </style>
 </head>
 <body>
+<?php include('navbar.php'); ?>
+
     <div class="dashboard">
-        <div class="header">
+        <div class="user_header">
             <h1>Welcome, <?php echo htmlspecialchars($user['user_name']); ?></h1>
             <p>Department: <?php echo htmlspecialchars($user['user_department']); ?></p>
             <p>Program: <?php echo htmlspecialchars($user['user_degree']); ?></p>
