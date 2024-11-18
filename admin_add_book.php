@@ -7,7 +7,7 @@ if(!isset($_SESSION['user_id'])) {
 }
 
 include 'config.php'; 
-
+include 'navbar.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $book_title = $_POST['book_title'];
     $author = $_POST['author'];

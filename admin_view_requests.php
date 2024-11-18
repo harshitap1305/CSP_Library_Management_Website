@@ -1,14 +1,14 @@
 <?php
 session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
-    header('Location: login.php');
+    header('Location: admin_login.php');
     exit();
 }
 
-require 'db_connection.php';
-
+require 'config.php';
+include 'navbar.php';
 $sql = "SELECT * FROM issue_requests";
-$result = $conn->query($sql);
+$result = $dbConn->query($sql);
 ?>
 <!DOCTYPE html>
 <html>

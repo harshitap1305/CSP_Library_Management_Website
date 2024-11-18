@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 include 'config.php';
-
+include 'navbar.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     

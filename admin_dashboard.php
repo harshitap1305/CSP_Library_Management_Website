@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include 'navbar.php';
 // Check if user is logged in
 if(!isset($_SESSION['user_id'])) {
     header("Location: admin_login.php");

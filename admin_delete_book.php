@@ -1,6 +1,6 @@
 <?php
 include 'config.php';
-
+include 'navbar.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $book_id = $_POST['book_id'];
 
