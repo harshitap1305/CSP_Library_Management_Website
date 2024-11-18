@@ -3,35 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Admin</title>
+    <title>Library Admin Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .dashboard-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .dashboard-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .dashboard-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+        .dashboard-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Manage Library Books</h1>
-
-    <!-- Form to Add a Book -->
-    <form action="add_book.php" method="POST">
-        <input type="text" name="title" placeholder="Title" required>
-        <input type="text" name="author" placeholder="Author" required>
-        <input type="text" name="genre" placeholder="Genre" required>
-        <textarea name="description" placeholder="Description"></textarea>
-        <button type="submit">Add Book</button>
-    </form>
-
-    <!-- Form to Edit a Book -->
-    <form action="edit_book.php" method="POST">
-        <input type="text" name="book_id" placeholder="Book ID" required>
-        <input type="text" name="title" placeholder="New Title" required>
-        <input type="text" name="author" placeholder="New Author" required>
-        <input type="text" name="genre" placeholder="New Genre" required>
-        <input type="checkbox" name="availability" checked> Available
-        <button type="submit">Edit Book</button>
-    </form>
-
-    <!-- Form to Delete a Book -->
-    <form action="delete_book.php" method="POST">
-        <input type="text" name="book_id" placeholder="Book ID to Delete" required>
-        <button type="submit">Delete Book</button>
-    </form>
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">Admin Dashboard</h1>
+        <div class="dashboard-buttons">
+            <a href="admin_edit_book.php" class="dashboard-button">Edit Books</a>
+            <a href="admin_view_requests.php" class="dashboard-button">View Issue Requests</a>
+            <a href="admin_currently_issued.php" class="dashboard-button">Currently Issued Books</a>
+            <a href="admin_view_students.php" class="dashboard-button">View Student Data</a>
+            <a href="admin_booklist.php" class="dashboard-button">Book List</a>
+            <a href="admin_logout.php" class="dashboard-button">Logout</a>
+        </div>
+    </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

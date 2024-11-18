@@ -1,9 +1,12 @@
 <?php
+
 session_start();
 if(!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: admin_login.php");
     exit();
 }
+
+include 'config.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $book_title = $_POST['book_title'];
@@ -11,24 +14,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $isbn = $_POST['isbn'];
     $publisher = $_POST['publisher'];
 
-    // Database connection
-    $conn = new mysqli('localhost', 'root', '', 'library_system');
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+   
+    if (!$dbConn) {
+        die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "INSERT INTO books (book_title, author, isbn, publisher) VALUES ('$book_title', '$author', '$isbn', '$publisher')";
+    
+    $sql = "INSERT INTO books (book_title, author, isbn, publisher) VALUES (?, ?, ?, ?)";
+    $stmt = $dbConn->prepare($sql);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "New book added successfully!";
+    if ($stmt) {
+        
+        $stmt->bind_param('ssss', $book_title, $author, $isbn, $publisher);
+
+        
+        if ($stmt->execute()) {
+            echo "New book added successfully!";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+       
+        $stmt->close();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error preparing the query: " . $dbConn->error;
     }
 
-    $conn->close();
+  
+    $dbConn->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
