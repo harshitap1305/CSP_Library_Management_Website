@@ -86,6 +86,7 @@ if (!$result) {
 <html>
 <head>
     <title>View Issue Requests</title>
+    
 </head>
 <body>
     <h1>Issue Requests</h1>
