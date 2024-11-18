@@ -49,13 +49,6 @@ $penalty = $result_penalty->fetch_assoc()['penalty'] ?? 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- <style>
-        .dashboard { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
-        .user_header { text-align: center; margin-bottom: 20px; }
-        .books-list { margin: 10px 0; }
-        button { margin: 5px; }
-        .logout { background-color: #f44336; color: white; border: none; padding: 10px 15px; cursor: pointer; }
-    </style> -->
 </head>
 <body>
 <?php include('navbar.php'); ?>
