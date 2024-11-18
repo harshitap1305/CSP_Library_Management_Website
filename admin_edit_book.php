@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_id'])) {
             $stmt->bind_param('ssii', $title, $author, $quantity, $book_id);
             if ($stmt->execute()) {
                 echo "Book updated successfully!";
+                echo '<a href="admin_dashboard.html">Back to Dashboard</a>';
             } else {
                 echo "Error updating book: " . $stmt->error;
             }

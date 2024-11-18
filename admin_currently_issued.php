@@ -14,29 +14,50 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Handle penalty form submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['penalty_submit'])) {
-    $userId = $_POST['user_id'];
-    $bookId = $_POST['book_id'];
-    $penaltyAmount = $_POST['penalty_amount'];
-    $reason = $_POST['reason'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['penalty_submit'])) {
+        // Add penalty
+        $userId = $_POST['user_id'];
+        $bookId = $_POST['book_id'];
+        $penaltyAmount = $_POST['penalty_amount'];
+        $reason = $_POST['reason'];
 
-    // Insert penalty into the penalties table
-    $penaltySql = "INSERT INTO penalties (user_id, book_id, penalty_amount, reason, status) 
-                   VALUES ('$userId', '$bookId', '$penaltyAmount', '$reason', 'Unpaid')";
+        $penaltySql = "INSERT INTO penalties (user_id, book_id, penalty_amount, reason, status) 
+                       VALUES (?, ?, ?, ?, 'Unpaid')";
 
-    if ($dbConn->query($penaltySql) === TRUE) {
-        echo "Penalty added successfully.";
-    } else {
-        echo "Error: " . $dbConn->error;
+        $stmt = $dbConn->prepare($penaltySql);
+        $stmt->bind_param('iids', $userId, $bookId, $penaltyAmount, $reason);
+
+        if ($stmt->execute()) {
+            echo "Penalty added successfully.";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+        $stmt->close();
+    } elseif (isset($_POST['mark_returned'])) {
+        // Mark book as returned
+        $issueId = $_POST['issue_id'];
+
+        $returnSql = "UPDATE issues SET returned = TRUE, return_date = CURDATE() WHERE issue_id = ?";
+        $stmt = $dbConn->prepare($returnSql);
+        $stmt->bind_param('i', $issueId);
+
+        if ($stmt->execute()) {
+            echo "Book marked as returned successfully.";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+        $stmt->close();
     }
 }
 
 // Query to fetch currently issued books and user details
-$sSql = "SELECT issues.issue_id, booklist.bookName, user_info.user_name, issues.issue_date, issues.due_date, issues.book_id, issues.user_id
+$sSql = "SELECT issues.issue_id, booklist.bookName, user_info.user_name, issues.issue_date, issues.due_date, issues.returned, 
+                issues.book_id, issues.user_id
          FROM issues
          INNER JOIN booklist ON issues.book_id = booklist.id
          INNER JOIN user_info ON issues.user_id = user_info.user_id
-         WHERE issues.returned = FALSE"; // Only fetch currently issued books
+         WHERE issues.returned = FALSE";
 
 $rResult = $dbConn->query($sSql);
 
@@ -44,17 +65,15 @@ if (!$rResult) {
     die("Query Failed: " . $dbConn->error);
 }
 
-// Fetch all results into an array for reuse
+// Fetch issued books
 $issuedBooks = [];
 if ($rResult->num_rows > 0) {
     while ($rRow = $rResult->fetch_assoc()) {
-        $issuedBooks[] = $rRow; // Store each row in an array
+        $issuedBooks[] = $rRow;
     }
-} else {
-    echo "No records found.";
 }
 
-// Query to get penalties for each issued book
+// Fetch penalties for issued books
 $penaltyQuery = "SELECT * FROM penalties WHERE status = 'Unpaid'";
 $penaltyResult = $dbConn->query($penaltyQuery);
 
@@ -76,97 +95,42 @@ $dbConn->close();
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            text-align: center;
-            margin-top: 30px;
-            color: #3A3A3A;
-            font-size: 28px;
         }
         table {
             width: 90%;
-            margin: 20px auto;
+            margin: auto;
             border-collapse: collapse;
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         th, td {
-            padding: 15px;
+            padding: 10px;
             text-align: center;
             border: 1px solid #ddd;
         }
         th {
             background-color: #AD6A48;
             color: white;
-            font-weight: bold;
-        }
-        td {
-            font-size: 14px;
-            color: #333;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            margin-top: 10px;
-            align-items: center;
-        }
-        input[type="number"], input[type="text"] {
-            padding: 8px;
-            margin: 5px 0;
-            width: 200px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
         }
         button {
-            padding: 10px 15px;
             background-color: #4CAF50;
             color: white;
+            padding: 8px 12px;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .no-records {
-            text-align: center;
-            color: #999;
-            font-size: 16px;
-        }
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            table {
-                width: 100%;
-            }
-            th, td {
-                font-size: 12px;
-                padding: 10px;
-            }
         }
     </style>
-       
-          
 </head>
 <body>
     <h1>Currently Issued Books</h1>
-    <table border="1">
+    <table>
         <tr>
             <th>Book Title</th>
             <th>Student Name</th>
             <th>Issue Date</th>
             <th>Due Date</th>
             <th>Penalty Status</th>
-            <th>Add Penalty</th>
+            <th>Actions</th>
         </tr>
         <?php if (!empty($issuedBooks)) { ?>
             <?php foreach ($issuedBooks as $row) { ?>
@@ -177,12 +141,11 @@ $dbConn->close();
                     <td><?php echo htmlspecialchars($row['due_date']); ?></td>
                     <td>
                         <?php
-                            // Check if a penalty is already applied for this book
                             $penaltyApplied = false;
                             foreach ($penalties as $penalty) {
                                 if ($penalty['user_id'] == $row['user_id'] && $penalty['book_id'] == $row['book_id']) {
                                     $penaltyApplied = true;
-                                    echo "Penalty: ₹" . htmlspecialchars($penalty['penalty_amount']) . " (" . htmlspecialchars($penalty['reason']) . ")";
+                                    echo "₹" . htmlspecialchars($penalty['penalty_amount']) . " (" . htmlspecialchars($penalty['reason']) . ")";
                                 }
                             }
                             if (!$penaltyApplied) {
@@ -191,13 +154,15 @@ $dbConn->close();
                         ?>
                     </td>
                     <td>
-                        <form action="" method="POST">
+                        <form action="" method="POST" style="display: inline-block;">
+                            <input type="hidden" name="issue_id" value="<?php echo htmlspecialchars($row['issue_id']); ?>">
+                            <button type="submit" name="mark_returned">Mark Returned</button>
+                        </form>
+                        <form action="" method="POST" style="display: inline-block;">
                             <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($row['user_id']); ?>">
                             <input type="hidden" name="book_id" value="<?php echo htmlspecialchars($row['book_id']); ?>">
-                            <label for="penalty_amount">Penalty Amount:</label>
-                            <input type="number" name="penalty_amount" min="0" step="0.01" required>
-                            <label for="reason">Reason:</label>
-                            <input type="text" name="reason" required>
+                            <input type="number" name="penalty_amount" placeholder="Penalty Amount" min="0" step="0.01" required>
+                            <input type="text" name="reason" placeholder="Reason" required>
                             <button type="submit" name="penalty_submit">Add Penalty</button>
                         </form>
                     </td>
@@ -205,11 +170,9 @@ $dbConn->close();
             <?php } ?>
         <?php } else { ?>
             <tr>
-                <td colspan="6">No records found.</td>
+                <td colspan="6">No currently issued books.</td>
             </tr>
         <?php } ?>
     </table>
 </body>
 </html>
-
-

@@ -80,7 +80,8 @@ if (!$rResult) {
         }
     </style>
 </head>
-<body>
+<body> 
+<a href="admin_dashboard.html">Back to Dashboard</a>
     <h1>Book List</h1>
     
     <?php if ($rResult->num_rows > 0): ?>
