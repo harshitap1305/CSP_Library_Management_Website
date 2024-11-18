@@ -10,22 +10,11 @@ include 'navbar.php';
 
 $sSql = "SELECT * FROM books";
 
-
 $rResult = $dbConn->query($sSql);
 
-
-if ($rResult->num_rows > 0) {
-   
-    while ($rRow = $rResult->fetch_assoc()) {
-    
-        echo "Book ID: " . $rRow['id'] . " | Title: " . $rRow['book_title'] . " | Author: " . $rRow['author'] . "<br>";
-    }
-} else {
-    echo "No books found.";
+if (!$rResult) {
+    die("Error executing query: " . $dbConn->error);
 }
-
-
-$dbConn->close();
 ?>
 
 <!DOCTYPE html>
@@ -35,21 +24,28 @@ $dbConn->close();
 </head>
 <body>
     <h1>Book List</h1>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Quantity</th>
-        </tr>
-        <?php while ($row = $result->fetch_assoc()) { ?>
+    
+    <?php if ($rResult->num_rows > 0): ?>
+        <table border="1">
             <tr>
-                <td><?php echo $row['id']; ?></td>
-                <td><?php echo $row['title']; ?></td>
-                <td><?php echo $row['author']; ?></td>
-                <td><?php echo $row['quantity']; ?></td>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Quantity</th>
             </tr>
-        <?php } ?>
-    </table>
+            <?php while ($rRow = $rResult->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($rRow['id']); ?></td>
+                    <td><?php echo htmlspecialchars($rRow['book_title']); ?></td>
+                    <td><?php echo htmlspecialchars($rRow['author']); ?></td>
+                    <td><?php echo htmlspecialchars($rRow['quantity']); ?></td>
+                </tr>
+            <?php endwhile; ?>
+        </table>
+    <?php else: ?>
+        <p>No books found.</p>
+    <?php endif; ?>
+
+    <?php $dbConn->close(); ?>
 </body>
 </html>

@@ -12,11 +12,18 @@ Under this project , we developed a dynamic website for Library Management conta
    - Import  MySQL database named library.sql and run the SQL script to create the tables.
     - Insert sample data present in library.sql into the booklist, user_info, and admin_info tables for testing.
 
+## Database Design:
+The system uses the following tables:
+
+booklist: Stores information about books, including their name, author, genre, and availability.
+user_info: Stores user details, including their email, password, department, and mobile number.
+admin_info: Stores admin details, including their email and password.
+requests: Stores the status of book requests by users.
+issues: Tracks the books issued to users, including issue and return dates.
+penalties: Stores penalties incurred by users for overdue books.
+
 ## Project Structure
 The project consists of the following components:
-
-   ## library.sql
-      - import the library.sql file
 
  ## I. HOME PAGE 
 
@@ -38,6 +45,8 @@ The project consists of the following components:
    - `home_images/IIT_Bhilai_logo.png` - Logo of IIT Bhilai.
 4. **PHP files**
    - 'admin_get_books.php' - when we click on search in books.html page, it handles the book search logic, querying the database based on user input.
+   - user_login.php - Handles user login functionality in backend.
+   -admin_login.php- Handles admin login functionality in backend.
 
 ## Features
 
