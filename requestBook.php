@@ -1,7 +1,9 @@
 <?php
 session_start();
 include('config.php');
-
+if (!isset($_SESSION['user_id'])) {
+    die("User not logged in. Please log in to request a book.");
+}
 $user_id = $_SESSION['user_id'];
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
