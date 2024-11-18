@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 require 'config.php';
-
+include 'navbar.php';
 
 $sSql = "SELECT issued_books.book_id, books.title, issued_books.student_id, students.name 
          FROM issued_books

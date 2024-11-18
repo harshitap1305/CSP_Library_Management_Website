@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 include 'config.php';
-
+include 'navbar.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
@@ -20,32 +20,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-   
-    $sSql = "INSERT INTO books (book_title, author, isbn, publisher) VALUES (?, ?, ?, ?)";
-    $stmt = $dbConn->prepare($sSql);
+// Fetch books for the dropdown
+$query = "SELECT id, book_title FROM books";
+$result = $dbConn->query($query);
+if (!$result) {
+    die("Error fetching books: " . $dbConn->error);
+}
 
+// Handle form submission to update books
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book_id'])) {
+    $book_id = $_POST['book_id'];
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $quantity = $_POST['quantity'];
+
+    $updateQuery = "UPDATE books SET book_title = ?, author = ?, quantity = ? WHERE id = ?";
+    $stmt = $dbConn->prepare($updateQuery);
     if ($stmt) {
-       
-        $stmt->bind_param('ssss', $sBookTitle, $sAuthor, $sIsbn, $sPublisher);
-
-       
+        $stmt->bind_param('ssii', $title, $author, $quantity, $book_id);
         if ($stmt->execute()) {
-            echo "New book added successfully!";
+            echo "Book updated successfully!";
         } else {
-            echo "Error: " . $stmt->error;
+            echo "Error updating book: " . $stmt->error;
         }
-
-
         $stmt->close();
     } else {
-        echo "Error preparing the query: " . $dbConn->error;
+        echo "Error preparing query: " . $dbConn->error;
     }
-
-   
-    $dbConn->close();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -57,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form method="post">
         <select name="book_id">
             <?php while ($row = $result->fetch_assoc()) { ?>
-                <option value="<?php echo $row['id']; ?>">
-                    <?php echo $row['title']; ?>
+                <option value="<?php echo htmlspecialchars($row['id']); ?>">
+                    <?php echo htmlspecialchars($row['book_title']); ?>
                 </option>
             <?php } ?>
         </select><br>
@@ -69,3 +72,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
 </body>
 </html>
+

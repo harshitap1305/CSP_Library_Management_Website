@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 require 'db_connection.php';
 
 $sql = "SELECT * FROM students";
-$result = $conn->query($sql);
+$result = $dbConn->query($sql);
 ?>
 <!DOCTYPE html>
 <html>
