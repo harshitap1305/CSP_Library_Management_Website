@@ -21,30 +21,6 @@ else {
     // If no search term, retrieve all books
     $query = mysqli_query($dbConn, "SELECT * FROM booklist") or die(mysqli_error($dbConn));
 }
-/*
-else if(isset($_POST['searchAuthor']) && !empty($_POST['searchAuthor'])){
-    
-$search_query = $_POST['searchAuthor'];
-$query = mysqli_query($dbConn,"select * from bookdata where UPPER(bAuthor) LIKE UPPER('%$search_query%')") or die(mysqli_error($dbConn));
-
-} else{
-    
-$search_query = $_POST['searchNo'];
-$query = mysqli_query($dbConn,"select * from bookdata where bNo = $search_query") or die(mysqli_error($dbConn));
-
-}  */
-
-/*create table booklist (
-id int primary key auto_increment,
-bookName varchar(255) NOT NULL,
-authorName varchar(255) not null,
-genre varchar(255) not null,
-shelfNo int not null,
-status_book boolean default true,
-quantity int default 0,
-year_published int,
-language varchar(50)
-); */
 
 echo "<table border='1' cellpadding='10'>";
 echo "<tr>
@@ -74,16 +50,6 @@ echo '<td>' . $row['status_book'] . '</td>';
 echo '<td>' . $row['quantity'] . '</td>';
 echo '<td>' . $row['year_published'] . '</td>';
 echo '<td>' . $row['language'] . '</td>';
-
-/*
-if($qty>0) {
-echo '<td>' . $row['status'] . '</td>';
-echo '<td><a href="addRequest.php?id=' . $row['bNo'] . '">Request Book</a></td>';
-} else{
-	echo '<td>' . $row['status'] . '</td>';
-	echo '<td>Unable to Request</td>';
-}
-echo "</tr>";*/
 
 }
 
