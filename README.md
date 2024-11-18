@@ -12,6 +12,25 @@ Under this project , we developed a dynamic website for Library Management conta
    - Import  MySQL database named library.sql and run the SQL script to create the tables.
     - Insert sample data present in library.sql into the booklist, user_info, and admin_info tables for testing.
 
+
+## Library System Login Credentials
+
+For testing the login functionality, use the following credentials:
+
+#User Login:
+Email: amit.kumar@iitbhilai.ac.in
+Password: pass1234
+
+Email: sneha.sharma@iitbhilai.ac.in
+Password: mypwd123
+
+#Admin Login:
+Email: john.doe@iitbhilai.ac.in
+Password: password123
+
+Email: alice.brown@iitbhilai.ac.in
+Password: alice@123
+
 ## Database Design:
 The system uses the following tables:
 
@@ -50,13 +69,43 @@ The project consists of the following components:
 
 ## Features
 
-- **Responsive Design**: Ensures compatibility across devices with different screen sizes.
+
 - **Navigation Bar**: Allows users to easily navigate between different sections of the website.
 - **Dynamic Content**: Provides comprehensive information about the library's resources, mission, and services.
 - **User Interaction**: Offers pages for user login, admin login, and student registration.
 
 
 ## II. USER DASHBOARD
+The User Dashboard is an essential component of the Library Management System, offering students a user-friendly interface to interact with library resources. It allows users to perform actions like searching for books, viewing borrowing history, and managing their library account seamlessly.
+
+Features:
+1. user_login.php
+This provides a secure login form for users to access their personalized dashboard. It redirects users to their dashboard upon successful authentication.
+2. user_login.html
+This is the html file of user login.
+
+3. user_dashboard.php
+This is the central page for users to access all library-related functionalities. It includes links to features such as book search, borrowing history, and account details.The penality given by the admin is also shown here.
+
+4. user_request_bookissue.php
+Allows users to search for books based on various filters such as title, author, category, or book number.
+Displays detailed information about available books, including availability status and shelf location.
+
+5. borrow_history.php
+Displays a user’s borrowing history, including book titles, issue dates, and return dates.
+Helps users keep track of their borrowed books and due dates.
+
+6. student_registration.php
+A page where students can register themselves in the library system.
+Ensures their information is securely stored for future transactions.
+
+7. books.html
+Provides a list of all books available in the library.
+Displays key details like book title, author, genre, publication year, and language.
+
+8. user_logout.php
+Safely logs users out of the system by destroying their session.
+Redirects them to the login page for added security
 
 ## III. ADMIN DASHBOARD
 
@@ -70,34 +119,25 @@ This file contains the login form for the admin to securely log in to the dashbo
 This is the main admin dashboard page. It provides links to:all the following files.
 
 
-3. add_book.php
+3. admin_add_book.php
 This page allows the admin to add new books to the system. It accepts input fields like book title, author, ISBN, and publisher.
 
-4. edit_book.php
+4. admin_edit_book.php
 This page allows the admin to edit existing book details. The admin can update the title, author, and quantity of a book.
 
-5. delete_book.php
+5. admin_delete_book.php
 This page allows the admin to delete  particular book and all the available data of the book.
 
-6. currently_issued.php
-This page displays the list of all currently issued books, including book ID, title, student ID, and student name.
+6. admin_currently_issued.php
+This page displays the list of all currently issued books, including book ID, title, student ID, and student name.The admin can also add penalty to the students.
 
-7. booklist.php
+7. admin_booklist.php
 This page displays the list of all  books availablity and status.
 
-8. view_students.php
+8. admin_view_students.php
 This page displays student information associated with borrowed books.
 
-9. logout.php
+9. admin_logout.php
 This file logs out the admin by destroying the session and redirecting them to the login page.
-
-## Features
-
-- **Responsive Design**: Ensures compatibility across devices with different screen sizes.
-- **Navigation Bar**: Allows users to easily navigate between different sections of the website.
-- **Dynamic Content**: Provides comprehensive information about the library's resources, mission, and services.
-- **User Interaction**: Offers pages for user login, admin login, and student registration.
-
-
 
 
