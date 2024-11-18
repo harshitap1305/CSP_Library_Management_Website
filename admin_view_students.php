@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
-    header('Location: login.php');
+    header('Location: admin_login.php');
     exit();
 }
 
 require 'config.php';
-include 'navbar.php';
+
 
 // Check if the database connection was successful
 if (!$dbConn) {
@@ -84,8 +84,10 @@ if (!$result) {
             }
         }
     </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<?php include('navbar.php'); ?>
     <h1>Student Data</h1>
     <?php if ($result->num_rows > 0) { ?>
         <table border="1">
